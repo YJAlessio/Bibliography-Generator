@@ -14,11 +14,11 @@ This project is a simple Tkinter application that allows users to generate MLA o
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/yjalessio/MLA-bibliography-generator.git
+   git clone https://github.com/YJAlessio/Bibliography-Generator.git
     ```
 2. Install Libraries
    ```
-   cd mla-bibliography-generator
+   cd Bibliography-generator
    pip install -r requirements.txt
    ```
 3. Run the application
