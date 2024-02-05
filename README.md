@@ -1,10 +1,10 @@
-# MLA Bibliography Generator
+# Bibliography Generator
 
-MLA Bibliography Generator is a simple Tkinter application that allows users to generate MLA format citations for online sources based on the provided website URL. It extracts metadata such as the author, title, publication date, and automatically includes the accessed date.
+This project is a simple Tkinter application that allows users to generate MLA or APA format citations for online sources based on the provided website URL. It extracts metadata such as the author, title, publication date, and automatically includes the accessed date.
 
 ## Features
 
-- Generate MLA format citations for online sources.
+- Generate MLA and APA format citations for online sources.
 - Automatically copy the citation to the clipboard.
 - Save generated citations to a log file (`log.txt`).
 
