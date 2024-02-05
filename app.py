@@ -5,28 +5,37 @@ from bs4 import BeautifulSoup
 from datetime import date
 import pyperclip
 
-class MLACreatorApp:
+class CitationGeneratorApp:
     def __init__(self, root):
         self.root = root
-        self.root.title("MLA Format Creator")
+        self.root.title("Citation Generator by YJAlessio")
 
         self.create_widgets()
 
     def create_widgets(self):
         # Entry for user to enter website URL
-        ttk.Label(self.root, text="Website URL:").pack(pady=10, side=tk.LEFT)
+        ttk.Label(self.root, text="Website URL:").pack(pady=10)
         self.url_entry = ttk.Entry(self.root, width=40)
-        self.url_entry.pack(pady=10, side=tk.LEFT)
+        self.url_entry.pack(pady=10)
 
         # Button to generate MLA format
-        ttk.Button(self.root, text="Generate MLA Format", command=self.generate_mla_format).pack(pady=10, side=tk.LEFT)
+        ttk.Button(self.root, text="Generate MLA Format", command=self.generate_mla_format).pack(pady=10)
+
+        # Button to generate APA format
+        ttk.Button(self.root, text="Generate APA Format", command=self.generate_apa_format).pack(pady=10)
 
         # Button to paste text from clipboard
-        ttk.Button(self.root, text="Paste from Clipboard", command=self.paste_from_clipboard).pack(pady=10, side=tk.RIGHT)
+        ttk.Button(self.root, text="Paste from Clipboard", command=self.paste_from_clipboard).pack(pady=10)
 
     def generate_mla_format(self):
         url = self.url_entry.get()
+        self.generate_citation("MLA", url)
 
+    def generate_apa_format(self):
+        url = self.url_entry.get()
+        self.generate_citation("APA", url)
+
+    def generate_citation(self, style, url):
         if not url:
             tk.messagebox.showwarning("Warning", "Please enter a website URL.")
             return
@@ -42,19 +51,36 @@ class MLACreatorApp:
             publication_date_tag = soup.find('meta', {'name': 'date'}) or soup.find('meta', {'property': 'og:publish_date'})
             publication_date = publication_date_tag['content'].strip() if publication_date_tag else ""
 
-            # Creating MLA format with the accessed date at the end
-            mla_format = f"{author}. \"{title}.” {publication_date}, {url}. Accessed {date.today().strftime('%B %d, %Y')}."
+            # Customize the citation format based on the style
+            if style == "MLA":
+                citation_format = f"{author}. \"{title}.” {publication_date}, {url}. Accessed {date.today().strftime('%B %d, %Y')}."
+            elif style == "APA":
+                # Customize the APA citation format
+                if author:
+                    author_str = f"{author}."
+                else:
+                    author_str = ""
 
-            # Copying MLA format to clipboard
-            pyperclip.copy(mla_format)
+                if publication_date:
+                    date_str = f" ({publication_date})."
+                else:
+                    date_str = ""
 
-            # Displaying the generated MLA format and copy confirmation
-            messagebox.showinfo("MLA Format", f"{mla_format}\n\nCitation copied to clipboard.")
+                citation_format = f"{author_str} ({date_str} {title}). Retrieved from {url}"
+            else:
+                tk.messagebox.showwarning("Warning", "Invalid citation style.")
+                return
+
+            # Copying citation format to clipboard
+            pyperclip.copy(citation_format)
+
+            # Displaying the generated citation and copy confirmation
+            messagebox.showinfo(f"{style} Format", f"{citation_format}\n\nCitation copied to clipboard.")
 
             # Saving to log.txt
             with open("log.txt", "a") as file:
-                file.write(mla_format + "\n")
-                file.write("-" * 50 + "\n")
+                file.write(citation_format + "\n")
+                file.write("\n")
         except Exception as e:
             tk.messagebox.showerror("Error", f"Error: {str(e)}")
 
@@ -65,5 +91,5 @@ class MLACreatorApp:
 
 if __name__ == "__main__":
     root = tk.Tk()
-    app = MLACreatorApp(root)
+    app = CitationGeneratorApp(root)
     root.mainloop()
