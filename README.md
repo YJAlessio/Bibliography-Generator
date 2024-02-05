@@ -24,10 +24,10 @@ Make sure you have Python installed on your system. You can download Python from
    cd mla-bibliography-generator
    pip install -r requirements.txt
    ```
-3 Run the application
+3. Run the application
   ```
-python app.py
-```
+   python app.py
+   ```
 
 
    
