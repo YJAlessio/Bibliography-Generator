@@ -8,10 +8,7 @@ MLA Bibliography Generator is a simple Tkinter application that allows users to 
 - Automatically copy the citation to the clipboard.
 - Save generated citations to a log file (`log.txt`).
 
-## Prerequisites
-
-Make sure you have Python installed on your system. You can download Python from [python.org](https://www.python.org/).
-
+  
 ## Installation
 
 1. Clone the repository:
