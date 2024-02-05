@@ -14,7 +14,7 @@ MLA Bibliography Generator is a simple Tkinter application that allows users to 
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/yjalessio/mla-bibliography-generator
+   git clone https://github.com/yjalessio/MLA-bibliography-generator.git
     ```
 2. Install Libraries
    ```
