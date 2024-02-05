@@ -25,7 +25,7 @@ Make sure you have Python installed on your system. You can download Python from
    pip install -r requirements.txt
    ```
 3. Run the application
-  ```
+   ```
    python app.py
    ```
 
